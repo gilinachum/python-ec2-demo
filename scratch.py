@@ -11,7 +11,8 @@ def busy_wait(dt):
 instanceid = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
 mac_id = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/network/interfaces/macs/').read().decode()
 subnet_id = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/network/interfaces/macs/' + mac_id +'/subnet-id/').read().decode()
-busy_wait(5)
+az_id = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/placement/availability-zone').read().decode()
+busy_wait(0)
 
 
-print(instanceid)
+print(az_id)
