@@ -24,3 +24,8 @@ def busy_wait(dt):
     current_time = time.time()
     while (time.time() < current_time+dt):
         pass
+    
+def send_hit_metric():
+    import boto3
+    client = boto3.client('cloudwatch')
+    
