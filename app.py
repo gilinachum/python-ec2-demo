@@ -9,17 +9,15 @@ import logging
 
 logging.basicConfig(filename='./pythonapp.log',level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-instanceId = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
-az = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/placement/availability-zone').read().decode()
-
-logging.info(f'Starting. instanceId={instanceId}. az={az}')
-
 app = Flask(__name__)
 
 @app.route('/fetch')
 def get():
     busy_wait_in_seconds  = request.args.get('busy_wait_in_seconds', default = 1, type = int)
     logging.info(f'Received request to wait {busy_wait_in_seconds} seconds.')
+    
+    instanceId = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
+    az = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/placement/availability-zone').read().decode()
     
     record_metric(instanceId, busy_wait_in_seconds)
     busy_wait(busy_wait_in_seconds)
