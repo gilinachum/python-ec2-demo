@@ -7,7 +7,7 @@ from datetime import datetime
 import boto3
 import logging
 
-logging.basicConfig(filename='/home/ec2-user/pythonapp.log',level=logging.DEBUG)
+logging.basicConfig(filename='pythonapp.log',level=logging.DEBUG)
 
 instanceId = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/instance-id').read().decode()
 az = urllib.request.urlopen('http://169.254.169.254/latest/meta-data/placement/availability-zone').read().decode()
