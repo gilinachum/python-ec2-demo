@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#myButton").click(function(){
+        $.ajax({
+            url: "http://d39rzbk69dlgud.cloudfront.net/fetch?busy_wait_in_seconds=0",
+            dataType: 'text',
+            success: function(result){
+            $("#myResponseTextArea").text(result);
+            console.log(result);
+        }});
+    });
+});
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Ramp up App</title>
+</head>
+
+<body>
+<img src="images/aws_logo_smile_1200x630.png" style="width:12%"/>
+<br/>
+<input id="myButton" type="button" value="Click Me" style="font-size: 48px"/>
+<textarea id="myResponseTextArea" cols=120 rows="10">Nothing yet</textarea>
+</body>
+</html>
